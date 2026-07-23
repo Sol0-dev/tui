@@ -284,93 +284,91 @@ ${trimVal}`;
     }
   };
 
-  return (
-    <Box flexDirection="column" padding={1}>
-      {/* Top Header Banner */}
-      <Box borderStyle="double" borderColor="cyan" flexDirection="column" paddingX={1}>
-        <Box justifyContent="space-between">
-          <Text bold color="yellow">
-            HYBRIDS_CLI <Text color="gray">v2.4 (Ink Terminal SDK)</Text>
-          </Text>
-          <Text color={agentStatus === 'thinking' ? 'yellow' : agentStatus === 'executing' ? 'blue' : 'green'}>
-            {agentStatus === 'thinking' ? '⚡ THINKING...' : agentStatus === 'executing' ? '⚙ EXECUTING...' : '● ONLINE'}
-          </Text>
-        </Box>
-        <Box justifyContent="space-between" marginTop={0}>
-          <Text>
-            <Text color="gray">Model: </Text>
-            <Text color="cyan">{selectedModel}</Text>
-            <Text color="gray"> | Agent: </Text>
-            <Text color="magenta">{activeAgent}</Text>
-            <Text color="gray"> | Mode: </Text>
-            <Text color="green">{agentMode.toUpperCase()}</Text>
-          </Text>
-          <Text>
-            <Text color="yellow">Cost: ${stats.cost.toFixed(4)}</Text>
-            <Text color="gray"> | Tokens: {stats.tokens}</Text>
-          </Text>
-        </Box>
-      </Box>
+  const h = React.createElement;
 
-      {/* Main Body Grid */}
-      <Box flexDirection="row" marginY={1}>
-        {/* Left Box: Workspace Directory Explorer */}
-        <Box borderStyle="single" borderColor="gray" flexDirection="column" width={32} paddingX={1}>
-          <Text bold color="cyan">📁 Workspace Tree</Text>
-          <Text color="gray">───────────────</Text>
-          {workspaceTree.map((item, idx) => (
-            <Box key={idx} flexDirection="column">
-              <Text color={item.isDir ? 'yellow' : 'white'}>
-                {item.isDir ? '📂 ' : '📄 '}{item.name}
-              </Text>
-              {item.isDir && item.children && item.children.map((child, cIdx) => (
-                <Box key={cIdx} paddingLeft={2} flexDirection="column">
-                  <Text color={child.isDir ? 'yellow' : 'gray'}>
-                    {child.isDir ? '📁 ' : '├── '}{child.name}
-                  </Text>
-                  {child.isDir && child.children && child.children.map((sub, sIdx) => (
-                    <Text key={sIdx} color="gray">
-                      {'   └── '}{sub.name}
-                    </Text>
-                  ))}
-                </Box>
-              ))}
-            </Box>
-          ))}
-        </Box>
+  return h(Box, { flexDirection: 'column', padding: 1 },
+    // Top Header Banner
+    h(Box, { borderStyle: 'double', borderColor: 'cyan', flexDirection: 'column', paddingX: 1 },
+      h(Box, { justifyContent: 'space-between' },
+        h(Text, { bold: true, color: 'yellow' },
+          'HYBRIDS_CLI ',
+          h(Text, { color: 'gray' }, 'v2.4 (Ink Terminal SDK)')
+        ),
+        h(Text, { color: agentStatus === 'thinking' ? 'yellow' : agentStatus === 'executing' ? 'blue' : 'green' },
+          agentStatus === 'thinking' ? '⚡ THINKING...' : agentStatus === 'executing' ? '⚙ EXECUTING...' : '● ONLINE'
+        )
+      ),
+      h(Box, { justifyContent: 'space-between', marginTop: 0 },
+        h(Text, null,
+          h(Text, { color: 'gray' }, 'Model: '),
+          h(Text, { color: 'cyan' }, selectedModel),
+          h(Text, { color: 'gray' }, ' | Agent: '),
+          h(Text, { color: 'magenta' }, activeAgent),
+          h(Text, { color: 'gray' }, ' | Mode: '),
+          h(Text, { color: 'green' }, agentMode.toUpperCase())
+        ),
+        h(Text, null,
+          h(Text, { color: 'yellow' }, `Cost: $${stats.cost.toFixed(4)}`),
+          h(Text, { color: 'gray' }, ` | Tokens: ${stats.tokens}`)
+        )
+      )
+    ),
 
-        {/* Right Box: Output / Event Log Stream */}
-        <Box borderStyle="single" borderColor="blue" flexDirection="column" flexGrow={1} paddingX={1} minHeight={16}>
-          <Text bold color="blue">📜 Event Stream & Conversation Log</Text>
-          <Text color="gray">─────────────────────────────────────────────────────</Text>
-          {logs.slice(-14).map((log, i) => (
-            <Text key={i} color={log.type === 'user' ? 'green' : log.type === 'ai' ? 'white' : log.type === 'exec' ? 'cyan' : 'yellow'}>
-              {log.text}
-            </Text>
-          ))}
-          {agentStatus === 'thinking' && (
-            <Box marginTop={1}>
-              <Text color="yellow">
-                <Spinner type="dots" /> Generating AI response...
-              </Text>
-            </Box>
-          )}
-        </Box>
-      </Box>
+    // Main Body Grid
+    h(Box, { flexDirection: 'row', marginY: 1 },
+      // Left Box: Workspace Directory Explorer
+      h(Box, { borderStyle: 'single', borderColor: 'gray', flexDirection: 'column', width: 32, paddingX: 1 },
+        h(Text, { bold: true, color: 'cyan' }, '📁 Workspace Tree'),
+        h(Text, { color: 'gray' }, '───────────────'),
+        workspaceTree.map((item, idx) =>
+          h(Box, { key: idx, flexDirection: 'column' },
+            h(Text, { color: item.isDir ? 'yellow' : 'white' },
+              (item.isDir ? '📂 ' : '📄 ') + item.name
+            ),
+            item.isDir && item.children && item.children.map((child, cIdx) =>
+              h(Box, { key: cIdx, paddingLeft: 2, flexDirection: 'column' },
+                h(Text, { color: child.isDir ? 'yellow' : 'gray' },
+                  (child.isDir ? '📁 ' : '├── ') + child.name
+                ),
+                child.isDir && child.children && child.children.map((sub, sIdx) =>
+                  h(Text, { key: sIdx, color: 'gray' },
+                    '   └── ' + sub.name
+                  )
+                )
+              )
+            )
+          )
+        )
+      ),
 
-      {/* Bottom Command Prompt Bar */}
-      <Box borderStyle="round" borderColor="green" paddingX={1}>
-        <Text bold color="green">
-          acy-agent [{agentMode.toUpperCase()}:{activeAgent}]&gt;{' '}
-        </Text>
-        <TextInput
-          value={inputVal}
-          onChange={setInputVal}
-          onSubmit={handleSubmit}
-          placeholder="Enter prompt or /help..."
-        />
-      </Box>
-    </Box>
+      // Right Box: Output / Event Log Stream
+      h(Box, { borderStyle: 'single', borderColor: 'blue', flexDirection: 'column', flexGrow: 1, paddingX: 1, minHeight: 16 },
+        h(Text, { bold: true, color: 'blue' }, '📜 Event Stream & Conversation Log'),
+        h(Text, { color: 'gray' }, '─────────────────────────────────────────────────────'),
+        logs.slice(-14).map((log, i) =>
+          h(Text, { key: i, color: log.type === 'user' ? 'green' : log.type === 'ai' ? 'white' : log.type === 'exec' ? 'cyan' : 'yellow' },
+            log.text
+          )
+        ),
+        agentStatus === 'thinking' && h(Box, { marginTop: 1 },
+          h(Text, { color: 'yellow' },
+            h(Spinner, { type: 'dots' }),
+            ' Generating AI response...'
+          )
+        )
+      )
+    ),
+
+    // Bottom Command Prompt Bar
+    h(Box, { borderStyle: 'round', borderColor: 'green', paddingX: 1 },
+      h(Text, { bold: true, color: 'green' }, `acy-agent [${agentMode.toUpperCase()}:${activeAgent}]> `),
+      h(TextInput, {
+        value: inputVal,
+        onChange: setInputVal,
+        onSubmit: handleSubmit,
+        placeholder: 'Enter prompt or /help...'
+      })
+    )
   );
 };
 
@@ -378,7 +376,7 @@ ${trimVal}`;
 const isDirectRun = import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith('acy.js');
 
 if (isDirectRun || process.env.INK_RUN) {
-  render(<AcyTuiApp />);
+  render(React.createElement(AcyTuiApp));
 }
 
 export default AcyTuiApp;
