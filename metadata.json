@@ -1,0 +1,8 @@
+{
+  "name": "ACY: Hybrids Terminal CLI",
+  "description": "ACY Agent Hybrids CLI - Advanced Terminal User Interface for AI coding agents supporting local models (Ollama, LM Studio), OpenRouter API, multi-step /goal objectives, recurring /loop tasks, and live web search.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
