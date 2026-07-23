@@ -1,0 +1,31 @@
+{
+  "name": "Filesystem MCP Server",
+  "version": "1.2.0",
+  "type": "local_process",
+  "description": "Model Context Protocol server for workspace file operations",
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "Read file content from workspace",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" }
+        },
+        "required": ["path"]
+      }
+    },
+    {
+      "name": "write_file",
+      "description": "Write or update file content in workspace",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["path", "content"]
+      }
+    }
+  ]
+}

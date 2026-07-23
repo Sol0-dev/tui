@@ -1,0 +1,19 @@
+{
+  "name": "Kali Terminal MCP Server",
+  "version": "1.0.0",
+  "type": "terminal_bridge",
+  "description": "Model Context Protocol bridge for Kali Linux command execution",
+  "tools": [
+    {
+      "name": "exec_kali_command",
+      "description": "Execute shell command on Kali Linux system",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "command": { "type": "string" }
+        },
+        "required": ["command"]
+      }
+    }
+  ]
+}

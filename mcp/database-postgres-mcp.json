@@ -1,0 +1,19 @@
+{
+  "name": "PostgreSQL Database MCP Server",
+  "version": "1.0.0",
+  "type": "database_connector",
+  "description": "Model Context Protocol adapter for relational SQL queries",
+  "tools": [
+    {
+      "name": "run_sql_query",
+      "description": "Execute SQL query on connected PostgreSQL database",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sql": { "type": "string" }
+        },
+        "required": ["sql"]
+      }
+    }
+  ]
+}

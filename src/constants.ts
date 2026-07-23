@@ -403,6 +403,42 @@ export const PRESET_PROJECTS: PresetProject[] = [
     description: 'Complete environment with agents/ directory, skills/ directory, mcp/ configs, root AGENTS.md, and config.json.',
     files: [
       {
+        path: 'SETUP.md',
+        language: 'markdown',
+        content: `# ACY Hybrids Setup & Customization Guide
+
+This guide explains how to customize and expand your ACY Hybrids agent workspace with custom Agent Personas, Skills, and Model Context Protocol (MCP) servers.
+
+---
+
+## 1. Customizing Root AGENTS.md
+The \`AGENTS.md\` file at the workspace root acts as the primary system instruction set for the AI model.
+- Add global coding standards, safety rules, or project goals.
+- The CLI and Browser TUI automatically inject \`AGENTS.md\` into prompt context.
+
+---
+
+## 2. Adding Custom Agent Personas (\`agents/\`)
+To add a new agent persona:
+1. Create a subdirectory under \`agents/\` (e.g., \`agents/my-custom-agent/\`).
+2. Create an \`AGENTS.md\` file inside that folder.
+3. Switch active agent in CLI using \`/agent my-custom-agent\` or via the Agent Herder dropdown.
+
+---
+
+## 3. Adding Custom Skills (\`skills/\`)
+Skills provide modular operational guidelines and procedural workflows:
+1. Create a directory in \`skills/\` (e.g., \`skills/api-testing/\`).
+2. Add a \`SKILLS.md\` file.
+
+---
+
+## 4. Configuring MCP Servers (\`mcp/\`)
+Model Context Protocol (MCP) servers enable standard tool connections (databases, external APIs, terminal tools).
+Create a JSON config in \`mcp/\` (e.g., \`mcp/custom-mcp.json\`).
+`,
+      },
+      {
         path: 'DEPLOYMENT_KALI.md',
         language: 'markdown',
         content: `# Kali Linux VM & TMUX Terminal CLI Setup Guide
