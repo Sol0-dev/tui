@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "bin": {
+    "acy": "./bin/acy.js",
     "acy-cli": "./cli.js"
   },
   "scripts": {
-    "cli": "node cli.js",
+    "acy": "node ./bin/acy.js",
+    "cli": "node ./bin/acy.js",
     "dev": "tsx server.ts",
     "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
     "start": "node dist/server.cjs",
@@ -20,9 +22,14 @@
     "@tailwindcss/vite": "^4.1.14",
     "@types/diff": "^8.0.0",
     "@vitejs/plugin-react": "^5.0.4",
+    "chalk": "^5.6.2",
     "diff": "^9.0.0",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
+    "ink": "^7.1.1",
+    "ink-select-input": "^6.2.0",
+    "ink-spinner": "^5.0.0",
+    "ink-text-input": "^6.0.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
     "react": "^19.0.1",
